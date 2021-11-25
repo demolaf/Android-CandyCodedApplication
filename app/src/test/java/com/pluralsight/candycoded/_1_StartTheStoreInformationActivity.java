@@ -10,7 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -21,8 +23,8 @@ import static org.junit.Assert.assertTrue;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @PrepareForTest({AppCompatActivity.class, MainActivity.class, Intent.class, InfoActivity.class})
 @RunWith(PowerMockRunner.class)
+@PowerMockIgnore({"javax.management.", "com.sun.org.apache.xerces.", "javax.xml.", "org.xml.", "org.w3c.dom.", "com.sun.org.apache.xalan.", "javax.activation.*"})
 public class _1_StartTheStoreInformationActivity {
-    private static MainActivity activity;
 
     private static boolean onOptionsItemSelected_result = true;
     private static boolean called_Intent = false;
@@ -33,7 +35,7 @@ public class _1_StartTheStoreInformationActivity {
     @BeforeClass
     public static void setup() throws Exception {
         // Spy on a MainActivity instance.
-        activity = PowerMockito.spy(new MainActivity());
+        MainActivity activity = PowerMockito.spy(new MainActivity());
         // Create a fake Bundle to pass in.
         Bundle bundle = Mockito.mock(Bundle.class);
         // Create a spy Intent to return from new Intent().
